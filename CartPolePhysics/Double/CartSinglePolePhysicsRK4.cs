@@ -4,7 +4,7 @@ namespace CartPolePhysics.Double
 {
     /// <summary>
     /// Represents the cart-pole physical model (with a single pole); providing a model state update method
-    /// that employs a classic 4th order order Runge-Kutta to project to the state at the next timestep.
+    /// that employs a classic 4th order Runge-Kutta to project to the state at the next timestep.
     /// </summary>
     public sealed class CartSinglePolePhysicsRK4 : CartSinglePolePhysics
     {
@@ -128,7 +128,7 @@ namespace CartPolePhysics.Double
             _k4[2] = xa;
             _k4[3] = thetaa;
 
-            // Project _state to its new state, using a weighted sum over k1,k2,k3,k4.
+            // Project _state to its new state, using a weighted sum over gradients k1, k2, k3, k4.
             for(int i=0; i < _state.Length; i++)
             {
                 _state[i] += (_k1[i] + 2.0*_k2[i] + 2.0*_k3[i] + _k4[i]) * (_tau / 6.0);

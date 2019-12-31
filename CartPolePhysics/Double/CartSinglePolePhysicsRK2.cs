@@ -94,7 +94,7 @@ namespace CartPolePhysics.Double
             _k2[2] = xa;
             _k2[3] = thetaa;
 
-            // Project _state to its new state, using the mean gradient of (k1 + k2) / 2.
+            // Project _state to its new state, using the mean gradients given by (k1 + k2) / 2.
             for(int i=0; i < _state.Length; i++) 
             {
                 _state[i] += (_k1[i] + _k2[i]) * _tau * 0.5;

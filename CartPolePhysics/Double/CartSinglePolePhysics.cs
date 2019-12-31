@@ -18,7 +18,7 @@ namespace CartPolePhysics.Double
         /// <summary>
         /// The model state variables are:
         ///  [0] x-axis coordinate of the cart (metres).
-        ///  [1] Pole angle (radians). Clockwise deviation from thw vertical.
+        ///  [1] Pole angle (radians). Clockwise deviation from the vertical.
         ///  [2] x-axis velocity of the cart (m/s).
         ///  [3] Pole angular velocity (radians/s). Positive is clockwise.
         /// </summary>
@@ -116,7 +116,7 @@ namespace CartPolePhysics.Double
         /// Update the model state. I.e. move the state forward by one timestep.
         /// </summary>
         /// <param name="f">The external horizontal force applied to the cart.</param>
-        /// <remarks>This implementation of Update() uses Euler's method, this is somewhat inacurate especially for larger timesteps.</remarks>
+        /// <remarks>This implementation of Update() uses Euler's method, this is somewhat inaccurate especially for larger timesteps.</remarks>
         public virtual void Update(double f)
         {
             _equations.CalcAccelerations(_state, f, out double xa, out double thetaa);
