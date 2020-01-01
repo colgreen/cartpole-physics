@@ -1,5 +1,5 @@
 library("ggplot2")
-setwd("D:/tmp-cartpole")
+setwd("D:/home/projects/code/cartpole-physics/r-ggplot2")
 
 dat1 <- read.table("theta-RK1-tau0_001.csv", sep=",", head=TRUE)
 dat2 <- read.table("theta-RK1-tau0_005.csv", sep=",", head=TRUE)
@@ -11,7 +11,7 @@ p = ggplot() +
   geom_line(data=dat1, aes(x=time, y=theta, color="0.001")) +
   geom_line(data=dat2, aes(x=time, y=theta, color="0.005")) +
   geom_line(data=dat3, aes(x=time, y=theta, color="0.01")) +
-  scale_color_manual(name = "Timestep(seconds)", values = c("0.001"="#D55E00", "0.005"="#0072B2", "0.01"="#56B4E9")) +
+  scale_color_manual(name = "Timestep (seconds)", values = c("0.001"="#D55E00", "0.005"="#0072B2", "0.01"="#56B4E9")) +
   theme(legend.position="top") +
   xlab("time (seconds)") +
   ylab("pole angle (radians)")

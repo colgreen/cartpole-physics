@@ -1,5 +1,5 @@
 library("ggplot2")
-setwd("D:/tmp-cartpole")
+setwd("D:/home/projects/code/cartpole-physics/r-ggplot2")
 
 dat1 <- read.table("theta-RK1-tau0_001.csv", sep=",", head=TRUE)
 dat2 <- read.table("theta-RK4-tau0_001.csv", sep=",", head=TRUE)
@@ -9,7 +9,7 @@ dat2 <- read.table("theta-RK4-tau0_001.csv", sep=",", head=TRUE)
 p = ggplot() +
   geom_line(data=dat1, aes(x=time, y=theta, color="Euler")) +
   geom_line(data=dat2, aes(x=time, y=theta, color="RK4")) +
-  scale_color_manual(name = "Timestep(seconds)", values = c("Euler"="#D55E00", "RK4"="#0072B2")) +
+  scale_color_manual(name = "Method", values = c("Euler"="#D55E00", "RK4"="#0072B2")) +
   theme(legend.position="top") +
   xlab("time (seconds)") +
   ylab("pole angle (radians)")
