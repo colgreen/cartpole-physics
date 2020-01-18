@@ -17,10 +17,12 @@ namespace CartPoleConsole
 
             // Save the recorded model state at each timestep.
             Save(
-                "theta-RK4-tau0_04-doubleprecision.csv",
+                "theta-RK4-tau0_01.csv",
                 sim.TimeSeries,
                 sim.ThetaSeries);
         }
+
+        #region Private Methods [Double Precision Floating-point Maths]
 
         private static Double.CartSinglePoleSimulator InitSim()
         {
@@ -30,20 +32,7 @@ namespace CartPoleConsole
 
             var sim = new Double.CartSinglePoleSimulator(
                 15.0,
-                new CartPolePhysics.Double.CartSinglePolePhysicsRK4(1.0/6.0, state));
-
-            return sim;
-        }
-
-        private static Single.CartSinglePoleSimulator InitSim_SinglePrecision()
-        {
-            // Initialise the simulation.
-            float[] state = new float[4];
-            state[1] = MathF.PI / 2f; // theta = 90 degrees.
-
-            var sim = new Single.CartSinglePoleSimulator(
-                15f,
-                new CartPolePhysics.Single.CartSinglePolePhysicsRK4(1.0f/6.0f, state));
+                new CartPolePhysics.Double.CartSinglePolePhysicsRK4(0.01, state));
 
             return sim;
         }
@@ -65,6 +54,23 @@ namespace CartPoleConsole
             }
         }
 
+        #endregion
+
+        #region Private Methods [Single Precision Floating-point Maths]
+
+        private static Single.CartSinglePoleSimulator InitSim_SinglePrecision()
+        {
+            // Initialise the simulation.
+            float[] state = new float[4];
+            state[1] = MathF.PI / 2f; // theta = 90 degrees.
+
+            var sim = new Single.CartSinglePoleSimulator(
+                15f,
+                new CartPolePhysics.Single.CartSinglePolePhysicsRK4(1.0f / 6.0f, state));
+
+            return sim;
+        }
+
         private static void Save(
             string filename,
             float[] t_series,
@@ -75,11 +81,13 @@ namespace CartPoleConsole
             {
                 sw.WriteLine("time,theta");
 
-                for(int i=0; i < t_series.Length; i++)
+                for(int i = 0; i < t_series.Length; i++)
                 {
                     sw.WriteLine($"{t_series[i]:N3},{theta_series[i]}");
                 }
             }
         }
+
+        #endregion
     }
 }
