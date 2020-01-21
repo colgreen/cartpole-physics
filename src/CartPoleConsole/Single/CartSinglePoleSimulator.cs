@@ -12,8 +12,8 @@ namespace CartPoleConsole.Single
         readonly CartSinglePolePhysics _cartPolePhysics;
         readonly float[] _t_series;
         readonly float[] _x_series;
-        readonly float[] _theta_series;
         readonly float[] _xv_series;
+        readonly float[] _theta_series;
 
         #endregion
 
@@ -31,8 +31,8 @@ namespace CartPoleConsole.Single
 
             _t_series = new float[_timesteps];
             _x_series = new float[_timesteps];
-            _theta_series = new float[_timesteps];
             _xv_series = new float[_timesteps];
+            _theta_series = new float[_timesteps];
         }
 
         #endregion
@@ -68,8 +68,8 @@ namespace CartPoleConsole.Single
             // Record initial state.
             _t_series[0] = t;
             _x_series[0] = _cartPolePhysics.State[0];
-            _theta_series[0] = _cartPolePhysics.State[1];
-            _xv_series[0] = _cartPolePhysics.State[2];
+            _xv_series[0] = _cartPolePhysics.State[1];
+            _theta_series[0] = _cartPolePhysics.State[2];
 
             // Run the simulation for the required number of timesteps, and record state at each timestep.
             for(int timestep=0; timestep < _timesteps; timestep++, t += _tau)
@@ -80,8 +80,8 @@ namespace CartPoleConsole.Single
                 // Record state.
                 _t_series[timestep] = t;
                 _x_series[timestep] = _cartPolePhysics.State[0];
-                _theta_series[timestep] = _cartPolePhysics.State[1];
-                _xv_series[timestep] = _cartPolePhysics.State[2];
+                _xv_series[timestep] = _cartPolePhysics.State[1];
+                _theta_series[timestep] = _cartPolePhysics.State[2];
             }
         }
 

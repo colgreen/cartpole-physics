@@ -93,7 +93,7 @@ namespace CartPolePhysics.Double
         {
             // Calc the cart and pole accelerations for the current/initial state, and store the k1 gradients
             _equations.CalcAccelerations(_state, f, out double xa, out double thetaa);
-            _k1[0] = _state[2];
+            _k1[0] = _state[1];
             _k1[1] = _state[3];
             _k1[2] = xa;
             _k1[3] = thetaa;
@@ -103,7 +103,7 @@ namespace CartPolePhysics.Double
 
             // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
-            _k2[0] = _s[2];
+            _k2[0] = _s[1];
             _k2[1] = _s[3];
             _k2[2] = xa;
             _k2[3] = thetaa;
@@ -113,7 +113,7 @@ namespace CartPolePhysics.Double
 
             // Calc the cart and pole accelerations for the s3 state, and store the k3 gradients
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
-            _k3[0] = _s[2];
+            _k3[0] = _s[1];
             _k3[1] = _s[3];
             _k3[2] = xa;
             _k3[3] = thetaa;
@@ -123,7 +123,7 @@ namespace CartPolePhysics.Double
 
             // Calc the cart and pole accelerations for the s4 state, and store the k4 gradients
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
-            _k4[0] = _s[2];
+            _k4[0] = _s[1];
             _k4[1] = _s[3];
             _k4[2] = xa;
             _k4[3] = thetaa;

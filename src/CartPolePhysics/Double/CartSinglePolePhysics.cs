@@ -18,8 +18,8 @@ namespace CartPolePhysics.Double
         /// <summary>
         /// The model state variables are:
         ///  [0] x-axis coordinate of the cart (metres).
-        ///  [1] Pole angle (radians). Clockwise deviation from the vertical.
-        ///  [2] x-axis velocity of the cart (m/s).
+        ///  [1] x-axis velocity of the cart (m/s).
+        ///  [2] Pole angle (radians). Clockwise deviation from the vertical.
         ///  [3] Pole angular velocity (radians/s). Positive is clockwise.
         /// </summary>
         protected double[] _state;
@@ -122,11 +122,11 @@ namespace CartPolePhysics.Double
             _equations.CalcAccelerations(_state, f, out double xa, out double thetaa);
 
             // Update cart and pole positions based on current cart and pole velocities.
-            _state[0] += _state[2] * _tau;
-            _state[1] += _state[3] * _tau;
+            _state[0] += _state[1] * _tau;
+            _state[2] += _state[3] * _tau;
 
             // Update cart and pole velocities at next timestep based on current cart and pole accelerations.
-            _state[2] += xa * _tau;
+            _state[1] += xa * _tau;
             _state[3] += thetaa * _tau;
         }
 

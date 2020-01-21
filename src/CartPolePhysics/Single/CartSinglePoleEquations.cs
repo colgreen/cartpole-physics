@@ -89,8 +89,8 @@ namespace CartPolePhysics.Single
         /// </summary>
         /// <param name="state">The cart-pole model state. The model state variables are:
         ///  [0] x-axis coordinate of the cart (metres).
-        ///  [1] Pole angle (radians). Clockwise deviation from the vertical.
-        ///  [2] x-axis velocity of the cart (m/s).
+        ///  [1] x-axis velocity of the cart (m/s).
+        ///  [2] Pole angle (radians). Clockwise deviation from the vertical.
         ///  [3] Pole angular velocity (radians/s). Positive is clockwise.</param>
         /// <param name="f">The external horizontal force applied to the cart.</param>
         /// <param name="xa">Returns the cart's horizontal acceleration.</param>
@@ -104,8 +104,8 @@ namespace CartPolePhysics.Single
             // Note. This code is primarily written for clarity rather than execution speed, hence it is probably amenable to being optimised somewhat.
 
             // Extract state into named variables.
-            float theta = state[1];
-            float xv = state[2];
+            float xv = state[1];
+            float theta = state[2];
             float thetav = state[3];
 
             // Precompute some reused values.

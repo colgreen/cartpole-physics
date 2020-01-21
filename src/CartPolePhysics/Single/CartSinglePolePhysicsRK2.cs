@@ -79,7 +79,7 @@ namespace CartPolePhysics.Single
         {
             // Calc the cart and pole accelerations for the current/initial state, and store the k1 gradients
             _equations.CalcAccelerations(_state, f, out float xa, out float thetaa);
-            _k1[0] = _state[2];
+            _k1[0] = _state[1];
             _k1[1] = _state[3];
             _k1[2] = xa;
             _k1[3] = thetaa;
@@ -89,12 +89,12 @@ namespace CartPolePhysics.Single
 
             // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients
             _equations.CalcAccelerations(_s2, f, out xa, out thetaa);
-            _k2[0] = _s2[2];
+            _k2[0] = _s2[1];
             _k2[1] = _s2[3];
             _k2[2] = xa;
             _k2[3] = thetaa;
 
-            // Project _state to its new state, using the mean gradient of (k1 + k2) / 2.
+            // Project _state to its new state, using the mean gradients given by (k1 + k2) / 2.
             for(int i=0; i < _state.Length; i++) 
             {
                 _state[i] += (_k1[i] + _k2[i]) * _tau * 0.5f;
