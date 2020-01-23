@@ -10,7 +10,8 @@ namespace CartPolePhysics.Single
     {
         #region Instance Fields
 
-        // Working memory. The k1 and k2 gradients as defined by the Runge-Kutta 2nd order method; and the
+        // Allocate re-usable working arrays to avoid memory allocation and garbage collection overhead.
+        // These are the k1 and k2 gradients as defined by the Runge-Kutta 2nd order method; and an 
         // intermediate model state s2.
         readonly float[] _k1 = new float[4];
         readonly float[] _k2 = new float[4];
@@ -77,17 +78,21 @@ namespace CartPolePhysics.Single
         /// this is considerably more accurate that Euler's method for a given timestep size.</remarks>
         public override void Update(float f)
         {
-            // Calc the cart and pole accelerations for the current/initial state, and store the k1 gradients
+            // Calc the cart and pole accelerations for the current/initial state.
             _equations.CalcAccelerations(_state, f, out float xa, out float thetaa);
+            // Store a set of model state gradients, e.g. state[0] is the cart x position, therefore gradient[0] is 
+            // cart x-axis velocity; and state[1] is cart x-axis velocity, therefore gradient[1] is cart x-axis acceleration, etc.
             _k1[0] = _state[1];
             _k1[1] = xa;
             _k1[2] = _state[3];
             _k1[3] = thetaa;
 
             // Project the initial state to new state s2, using the k1 gradients.
+            // I.e. multiply each gradient (which is a rate of change) by a time increment (tau), to give a model state increment;
+            // and then add the increments to the initial state to get a new state for time t + tau.
             MultiplyAdd(_s2, _state, _k1, _tau);
 
-            // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients
+            // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients.
             _equations.CalcAccelerations(_s2, f, out xa, out thetaa);
             _k2[0] = _s2[1];
             _k2[1] = xa;

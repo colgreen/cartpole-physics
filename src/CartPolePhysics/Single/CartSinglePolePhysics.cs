@@ -19,7 +19,7 @@ namespace CartPolePhysics.Single
         /// The model state variables are:
         ///  [0] x-axis coordinate of the cart (metres).
         ///  [1] x-axis velocity of the cart (m/s).
-        ///  [2] Pole angle (radians). Clockwise deviation from the vertical.
+        ///  [2] Pole angle (radians); deviation from the vertical. Positive is clockwise.
         ///  [3] Pole angular velocity (radians/s). Positive is clockwise.
         /// </summary>
         protected float[] _state;
@@ -36,6 +36,13 @@ namespace CartPolePhysics.Single
         /// <summary>
         /// The cart-pole model state variables.
         /// </summary>
+        /// <remarks>
+        /// The model state variables are:
+        ///  [0] x-axis coordinate of the cart (metres).
+        ///  [1] x-axis velocity of the cart (m/s).
+        ///  [2] Pole angle (radians); deviation from the vertical. Positive is clockwise.
+        ///  [3] Pole angular velocity (radians/s). Positive is clockwise.
+        /// </remarks>
         public float[] State => _state;
 
         /// <summary>

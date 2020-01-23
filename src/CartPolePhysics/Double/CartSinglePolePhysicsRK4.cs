@@ -12,8 +12,9 @@ namespace CartPolePhysics.Double
 
         readonly double _tau_half;
 
-        // Working memory. The k1 to k4 gradients as defined by the Runge-Kutta 4th order method; and a
-        // working intermediate model state s.
+        // Allocate re-usable working arrays to avoid memory allocation and garbage collection overhead.
+        // These are the k1 to k4 gradients as defined by the Runge-Kutta 4th order method; and an 
+        // intermediate model state s.
         readonly double[] _k1 = new double[4];
         readonly double[] _k2 = new double[4];
         readonly double[] _k3 = new double[4];
@@ -91,17 +92,22 @@ namespace CartPolePhysics.Double
         /// accurate that Euler's method or 2nd order Runge-Kutta for a given timestep size.</remarks>
         public override void Update(double f)
         {
-            // Calc the cart and pole accelerations for the current/initial state, and store the k1 gradients
+            // Calc the cart and pole accelerations for the current/initial model state.
             _equations.CalcAccelerations(_state, f, out double xa, out double thetaa);
+
+            // Store a set of model state gradients, e.g. state[0] is the cart x position, therefore gradient[0] is 
+            // cart x-axis velocity; and state[1] is cart x-axis velocity, therefore gradient[1] is cart x-axis acceleration, etc.
             _k1[0] = _state[1];
             _k1[1] = xa;
             _k1[2] = _state[3];
             _k1[3] = thetaa;
 
             // Project the initial state to new state s2, using the k1 gradients.
+            // I.e. multiply each gradient (which is a rate of change) by a time increment (half tau), to give a model state increment;
+            // and then add the increments to the initial state to get a new state for time t + tau/2.
             MultiplyAdd(_s, _state, _k1, _tau_half);
 
-            // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients
+            // Calc the cart and pole accelerations for the s2 state, and store the k2 gradients.
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
             _k2[0] = _s[1];
             _k2[1] = xa;
@@ -111,7 +117,7 @@ namespace CartPolePhysics.Double
             // Project the initial state to new state s3, using the k2 gradients.
             MultiplyAdd(_s, _state, _k2, _tau_half);
 
-            // Calc the cart and pole accelerations for the s3 state, and store the k3 gradients
+            // Calc the cart and pole accelerations for the s3 state, and store the k3 gradients.
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
             _k3[0] = _s[1];
             _k3[1] = xa;
@@ -121,7 +127,7 @@ namespace CartPolePhysics.Double
             // Project the initial state to new state s4, using the k3 gradients.
             MultiplyAdd(_s, _state, _k3, _tau);
 
-            // Calc the cart and pole accelerations for the s4 state, and store the k4 gradients
+            // Calc the cart and pole accelerations for the s4 state, and store the k4 gradients.
             _equations.CalcAccelerations(_s, f, out xa, out thetaa);
             _k4[0] = _s[1];
             _k4[1] = xa;
