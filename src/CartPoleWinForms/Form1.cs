@@ -17,8 +17,8 @@ namespace CartPoleWinForms
         private void Init()
         {
             double[] state = new double[4];
-            state[1] = Math.PI / 2.0; // theta = 90 degrees.
-            var physics = new CartSinglePolePhysicsRK4(0.001, state);
+            state[2] = Math.PI / 2.0; // theta = 90 degrees.
+            var physics = new CartSinglePolePhysicsRK4(0.01, state);
 
             const int durationSecs = 15;
             int steps = (int)(durationSecs / physics.Tau);
@@ -70,8 +70,8 @@ namespace CartPoleWinForms
             // Record initial state.
             t_series[0] = t;
             x_series[0] = physics.State[0];
-            theta_series[0] = physics.State[1];
-            xv_series[0] = physics.State[2];
+            xv_series[0] = physics.State[1];
+            theta_series[0] = physics.State[2];
 
             for(int timestep=0; timestep < t_series.Length; timestep++, t += physics.Tau)
             {
@@ -81,8 +81,8 @@ namespace CartPoleWinForms
                 // Record state.
                 t_series[timestep] = t;
                 x_series[timestep] = physics.State[0];
-                theta_series[timestep] = physics.State[1];
-                xv_series[timestep] = physics.State[2];
+                xv_series[timestep] = physics.State[1];
+                theta_series[timestep] = physics.State[2];
             }
         }
     }
