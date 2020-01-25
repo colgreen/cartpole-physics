@@ -1,4 +1,4 @@
-﻿using CartPolePhysics.Single;
+﻿using CartPolePhysics.SinglePole.SinglePrecision;
 
 namespace CartPoleConsole.Single
 {

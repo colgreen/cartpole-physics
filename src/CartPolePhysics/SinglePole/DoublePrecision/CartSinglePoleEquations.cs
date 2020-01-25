@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CartPolePhysics.Double
+namespace CartPolePhysics.SinglePole.DoublePrecision
 {
     /// <summary>
     /// Encapsulates the equations of motion for the cart-pole model with a single pole.

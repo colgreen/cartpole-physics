@@ -1,6 +1,6 @@
 ﻿using static CartPolePhysics.ArrayMaths;
 
-namespace CartPolePhysics.Double
+namespace CartPolePhysics.SinglePole.DoublePrecision
 {
     /// <summary>
     /// Represents the cart-pole physical model (with a single pole); providing a model state update method

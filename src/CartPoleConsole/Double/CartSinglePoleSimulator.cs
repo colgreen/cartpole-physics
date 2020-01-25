@@ -1,4 +1,4 @@
-﻿using CartPolePhysics.Double;
+﻿using CartPolePhysics.SinglePole.DoublePrecision;
 
 namespace CartPoleConsole.Double
 {

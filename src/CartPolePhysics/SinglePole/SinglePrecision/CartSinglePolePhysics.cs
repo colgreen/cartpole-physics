@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace CartPolePhysics.Single
+namespace CartPolePhysics.SinglePole.SinglePrecision
 {
     /// <summary>
     /// Represents the cart-pole physical model (with a single pole); providing a model state update method

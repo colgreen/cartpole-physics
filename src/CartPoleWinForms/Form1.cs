@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CartPolePhysics.Double;
+using CartPolePhysics.SinglePole.DoublePrecision;
 using ZedGraph;
 
 namespace CartPoleWinForms

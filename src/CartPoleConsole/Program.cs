@@ -32,7 +32,7 @@ namespace CartPoleConsole
 
             var sim = new Double.CartSinglePoleSimulator(
                 15.0,
-                new CartPolePhysics.Double.CartSinglePolePhysicsRK4(0.01, state));
+                new CartPolePhysics.SinglePole.DoublePrecision.CartSinglePolePhysicsRK4(0.01, state));
 
             return sim;
         }
@@ -66,7 +66,7 @@ namespace CartPoleConsole
 
             var sim = new Single.CartSinglePoleSimulator(
                 15f,
-                new CartPolePhysics.Single.CartSinglePolePhysicsRK4(1.0f / 6.0f, state));
+                new CartPolePhysics.SinglePole.SinglePrecision.CartSinglePolePhysicsRK4(1.0f / 6.0f, state));
 
             return sim;
         }
