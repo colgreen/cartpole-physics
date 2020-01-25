@@ -115,7 +115,7 @@ namespace CartPolePhysics.Single
             float thetav_sqr = thetav * thetav;
 
             // Calc cart horizontal acceleration.
-            xa = (m*g*sin_theta*cos_theta - (7f/3f)*(f + m*l_hat * thetav_sqr * sin_theta - mu_c*xv) - (mu_p*thetav*cos_theta)/l_hat) / (m*cos_theta_sqr - (7f/3f)*M);
+            xa = (m*g*sin_theta*cos_theta - (7f/3f)*(f + m*l_hat * thetav_sqr * sin_theta - mu_c*xv) - ((mu_p*thetav*cos_theta)/l_hat)) / (m*cos_theta_sqr - (7f/3f)*M);
 
             // Calc pole angular acceleration.
             thetaa = (3f/(7f*l_hat)) * (g*sin_theta - xa*cos_theta - (mu_p * thetav)/(m*l_hat));

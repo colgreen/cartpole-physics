@@ -115,7 +115,7 @@ namespace CartPolePhysics.Double
             double thetav_sqr = thetav * thetav;
 
             // Calc cart horizontal acceleration.
-            xa = (m*g*sin_theta*cos_theta - (7.0/3.0)*(f + m*l_hat * thetav_sqr * sin_theta - mu_c*xv) - (mu_p*thetav*cos_theta)/l_hat) / (m*cos_theta_sqr - (7.0/3.0)*M);
+            xa = (m*g*sin_theta*cos_theta - (7.0/3.0)*(f + m*l_hat * thetav_sqr * sin_theta - mu_c*xv) - ((mu_p*thetav*cos_theta)/l_hat)) / (m*cos_theta_sqr - (7.0/3.0)*M);
 
             // Calc pole angular acceleration.
             thetaa = (3.0/(7.0*l_hat)) * (g*sin_theta - xa*cos_theta - (mu_p * thetav)/(m*l_hat));
