@@ -24,13 +24,13 @@ namespace CartPoleConsole
 
         #region Private Methods [Double Precision Floating-point Maths]
 
-        private static Double.CartSinglePoleSimulator InitSim()
+        private static SinglePole.DoublePrecision.CartSinglePoleSimulator InitSim()
         {
             // Initialise the simulation.
             double[] state = new double[4];
             state[1] = Math.PI / 2.0; // theta = 90 degrees.
 
-            var sim = new Double.CartSinglePoleSimulator(
+            var sim = new SinglePole.DoublePrecision.CartSinglePoleSimulator(
                 15.0,
                 new CartPolePhysics.SinglePole.DoublePrecision.CartSinglePolePhysicsRK4(0.01, state));
 
@@ -58,13 +58,13 @@ namespace CartPoleConsole
 
         #region Private Methods [Single Precision Floating-point Maths]
 
-        private static Single.CartSinglePoleSimulator InitSim_SinglePrecision()
+        private static SinglePole.SinglePrecision.CartSinglePoleSimulator InitSim_SinglePrecision()
         {
             // Initialise the simulation.
             float[] state = new float[4];
             state[1] = MathF.PI / 2f; // theta = 90 degrees.
 
-            var sim = new Single.CartSinglePoleSimulator(
+            var sim = new SinglePole.SinglePrecision.CartSinglePoleSimulator(
                 15f,
                 new CartPolePhysics.SinglePole.SinglePrecision.CartSinglePolePhysicsRK4(1.0f / 6.0f, state));
 

@@ -1,6 +1,6 @@
 ﻿using CartPolePhysics.SinglePole.SinglePrecision;
 
-namespace CartPoleConsole.Single
+namespace CartPoleConsole.SinglePole.SinglePrecision
 {
     internal class CartSinglePoleSimulator
     {
