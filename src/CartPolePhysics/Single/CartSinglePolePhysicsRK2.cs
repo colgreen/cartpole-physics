@@ -1,4 +1,4 @@
-﻿using static CartPolePhysics.Single.ArrayMaths;
+﻿using static CartPolePhysics.ArrayMaths;
 
 namespace CartPolePhysics.Single
 {
