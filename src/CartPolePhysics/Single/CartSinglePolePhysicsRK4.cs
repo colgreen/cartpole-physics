@@ -134,7 +134,7 @@ namespace CartPolePhysics.Single
             _k4[3] = thetaa;
 
             // Project _state to its new state, using a weighted sum over gradients k1, k2, k3, k4.
-            for(int i=0; i < _state.Length; i++)
+            for(int i=0; i < 4; i++)
             {
                 _state[i] += (_k1[i] + 2f*_k2[i] + 2f*_k3[i] + _k4[i]) * (_tau / 6f);
             }

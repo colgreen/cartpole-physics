@@ -82,10 +82,10 @@ namespace CartPolePhysics.Single
             _equations.CalcAccelerations(_state, f, out float xa, out float thetaa);
             // Store a set of model state gradients, e.g. state[0] is the cart x position, therefore gradient[0] is 
             // cart x-axis velocity; and state[1] is cart x-axis velocity, therefore gradient[1] is cart x-axis acceleration, etc.
-            _k1[0] = _state[1];
-            _k1[1] = xa;
-            _k1[2] = _state[3];
-            _k1[3] = thetaa;
+            _k1[0] = _state[1]; // Cart velocity.
+            _k1[1] = xa;        // Cart acceleration.
+            _k1[2] = _state[3]; // Pole angular velocity.
+            _k1[3] = thetaa;    // Pole angular acceleration.
 
             // Project the initial state to new state s2, using the k1 gradients.
             // I.e. multiply each gradient (which is a rate of change) by a time increment (tau), to give a model state increment;
@@ -100,7 +100,7 @@ namespace CartPolePhysics.Single
             _k2[3] = thetaa;
 
             // Project _state to its new state, using the mean gradients given by (k1 + k2) / 2.
-            for(int i=0; i < _state.Length; i++) 
+            for(int i=0; i < 4; i++) 
             {
                 _state[i] += (_k1[i] + _k2[i]) * _tau * 0.5f;
             }
