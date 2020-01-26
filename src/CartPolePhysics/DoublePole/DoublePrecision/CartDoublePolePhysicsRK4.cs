@@ -94,8 +94,8 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         {
             // Calc the cart and pole accelerations for the current/initial model state.
             _equations.CalcAccelerations(_state, f, out double xa, out double thetaa1, out double thetaa2);
-            // Store a set of model state gradients, e.g. state[0] is the cart x position, therefore gradient [0] is 
-            // cart x-axis velocity; and state[1] is cart x-axis velocity, therefore gradient [1] is cart x-axis acceleration, etc.
+            // Store a set of model state gradients, e.g. state[0] is the cart x position, therefore gradient[0] is 
+            // cart x-axis velocity; and state[1] is cart x-axis velocity, therefore gradient[1] is cart x-axis acceleration, etc.
             _k1[0] = _state[1]; // Cart velocity.
             _k1[1] = xa;        // Cart acceleration.
             _k1[2] = _state[3]; // Pole angular velocity.
