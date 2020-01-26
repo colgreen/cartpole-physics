@@ -65,23 +65,17 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
         {
             float t = 0f;
 
-            // Record initial state.
-            _t_series[0] = t;
-            _x_series[0] = _cartPolePhysics.State[0];
-            _xv_series[0] = _cartPolePhysics.State[1];
-            _theta_series[0] = _cartPolePhysics.State[2];
-
             // Run the simulation for the required number of timesteps, and record state at each timestep.
             for(int timestep=0; timestep < _timesteps; timestep++, t += _tau)
             {
-                // Update model state.
-                _cartPolePhysics.Update(0f);
-
                 // Record state.
                 _t_series[timestep] = t;
                 _x_series[timestep] = _cartPolePhysics.State[0];
                 _xv_series[timestep] = _cartPolePhysics.State[1];
                 _theta_series[timestep] = _cartPolePhysics.State[2];
+
+                // Update model state.
+                _cartPolePhysics.Update(0f);
             }
         }
 
