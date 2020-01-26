@@ -23,7 +23,7 @@ namespace CartPolePhysics.SinglePole.SinglePrecision
         /// <summary>
         /// Mass of the cart (in kilograms).
         /// </summary>
-        readonly float m_c = 10f;
+        readonly float m_c = 1f;
         /// <summary>
         /// Length of the pole (in metres). This is the full length of the pole, and not the half length as used widely 
         /// elsewhere in the literature.
