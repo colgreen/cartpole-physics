@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CartPolePhysics.SinglePole.DoublePrecision;
+using CartPolePhysics.DoublePole.DoublePrecision;
 using ZedGraph;
 
 namespace CartPoleWinForms
@@ -16,9 +16,11 @@ namespace CartPoleWinForms
 
         private void Init()
         {
-            double[] state = new double[4];
+            double[] state = new double[6];
             state[2] = Math.PI / 2.0; // theta = 90 degrees.
-            var physics = new CartSinglePolePhysicsRK4(0.01, state);
+            state[4] = Math.PI / 2.0;       // theta2 = 180 degrees.
+
+            var physics = new CartDoublePolePhysicsRK2(0.01, state);
 
             const int durationSecs = 15;
             int steps = (int)(durationSecs / physics.Tau);
@@ -26,21 +28,25 @@ namespace CartPoleWinForms
             double[] t_series = new double[steps];
             double[] x_series = new double[steps];
             double[] xv_series = new double[steps];
-            double[] theta_series = new double[steps];
+            double[] theta1_series = new double[steps];
+            double[] theta2_series = new double[steps];
 
             RunSimulation(
                 physics,
                 t_series,
                 x_series,
                 xv_series,
-                theta_series);
+                theta1_series,
+                theta2_series);
 
             PointPairList x_ppl = new PointPairList(t_series, x_series);
             PointPairList xv_ppl = new PointPairList(t_series, xv_series);
-            PointPairList theta_ppl = new PointPairList(t_series, theta_series);
+            PointPairList theta1_ppl = new PointPairList(t_series, theta1_series);
+            PointPairList theta2_ppl = new PointPairList(t_series, theta2_series);
 
             GraphPane pane = zed.GraphPane;
-            pane.AddCurve("theta", theta_ppl, Color.Black, SymbolType.None);
+            pane.AddCurve("theta1", theta1_ppl, Color.Black, SymbolType.None);
+            pane.AddCurve("theta2", theta2_ppl, Color.Purple, SymbolType.None);
             LineItem curveX = pane.AddCurve("x", x_ppl, Color.Red, SymbolType.None);
             curveX.IsY2Axis = true;
             pane.Y2Axis.IsVisible = true;
@@ -59,11 +65,12 @@ namespace CartPoleWinForms
         }
 
         private static void RunSimulation(
-            CartSinglePolePhysics physics,
+            CartDoublePolePhysics physics,
             double[] t_series,
             double[] x_series,
             double[] xv_series,
-            double[] theta_series)
+            double[] theta1_series,
+            double[] theta2_series)
         {
             double t = 0.0;
 
@@ -71,7 +78,8 @@ namespace CartPoleWinForms
             t_series[0] = t;
             x_series[0] = physics.State[0];
             xv_series[0] = physics.State[1];
-            theta_series[0] = physics.State[2];
+            theta1_series[0] = physics.State[2];
+            theta2_series[0] = physics.State[4];
 
             for(int timestep=0; timestep < t_series.Length; timestep++, t += physics.Tau)
             {
@@ -82,7 +90,8 @@ namespace CartPoleWinForms
                 t_series[timestep] = t;
                 x_series[timestep] = physics.State[0];
                 xv_series[timestep] = physics.State[1];
-                theta_series[timestep] = physics.State[2];
+                theta1_series[timestep] = physics.State[2];
+                theta2_series[timestep] = physics.State[4];
             }
         }
     }
