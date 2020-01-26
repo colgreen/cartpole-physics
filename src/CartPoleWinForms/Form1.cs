@@ -25,19 +25,19 @@ namespace CartPoleWinForms
 
             double[] t_series = new double[steps];
             double[] x_series = new double[steps];
-            double[] theta_series = new double[steps];
             double[] xv_series = new double[steps];
+            double[] theta_series = new double[steps];
 
             RunSimulation(
                 physics,
                 t_series,
                 x_series,
-                theta_series,
-                xv_series);
+                xv_series,
+                theta_series);
 
-            PointPairList theta_ppl = new PointPairList(t_series, theta_series);
             PointPairList x_ppl = new PointPairList(t_series, x_series);
             PointPairList xv_ppl = new PointPairList(t_series, xv_series);
+            PointPairList theta_ppl = new PointPairList(t_series, theta_series);
 
             GraphPane pane = zed.GraphPane;
             pane.AddCurve("theta", theta_ppl, Color.Black, SymbolType.None);
@@ -62,8 +62,8 @@ namespace CartPoleWinForms
             CartSinglePolePhysics physics,
             double[] t_series,
             double[] x_series,
-            double[] theta_series,
-            double[] xv_series)
+            double[] xv_series,
+            double[] theta_series)
         {
             double t = 0.0;
 
