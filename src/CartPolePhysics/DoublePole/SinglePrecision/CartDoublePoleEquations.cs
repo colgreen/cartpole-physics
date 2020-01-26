@@ -23,7 +23,7 @@ namespace CartPolePhysics.DoublePole.SinglePrecision
         /// <summary>
         /// Mass of pole 2 (in kilograms).
         /// </summary>
-        readonly float m2 = 0.08f;
+        readonly float m2 = 0.01f;
         /// <summary>
         /// Mass of the cart (in kilograms).
         /// </summary>
@@ -41,7 +41,7 @@ namespace CartPolePhysics.DoublePole.SinglePrecision
         /// Length of pole 2 (in metres). This is the full length of the pole, and not the half length as used widely 
         /// elsewhere in the literature.
         /// </summary>
-        readonly float l2 = 0.8f;
+        readonly float l2 = 0.1f;
         /// <summary>
         /// Half length of pole 2.
         /// </summary>
