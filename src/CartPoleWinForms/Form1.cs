@@ -18,7 +18,7 @@ namespace CartPoleWinForms
         {
             double[] state = new double[6];
             state[2] = Math.PI / 2.0; // theta = 90 degrees.
-            state[4] = Math.PI / 2.0;       // theta2 = 180 degrees.
+            state[4] = Math.PI;       // theta2 = 180 degrees.
 
             var physics = new CartDoublePolePhysicsRK2(0.01, state);
 

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace CartPolePhysics.DoublePole.SinglePrecision
 {
@@ -131,14 +132,14 @@ namespace CartPolePhysics.DoublePole.SinglePrecision
             _equations.CalcAccelerations(_state, f, out float xa, out float thetaa1, out float thetaa2);
 
             // Update cart and pole positions based on current cart and pole velocities.
-            _state[0] += _state[1] * _tau;
-            _state[2] += _state[3] * _tau;
-            _state[4] += _state[5] * _tau;
+            _state[0] = MathF.FusedMultiplyAdd(_state[1], _tau, _state[0]);
+            _state[2] = MathF.FusedMultiplyAdd(_state[3], _tau, _state[2]);
+            _state[4] = MathF.FusedMultiplyAdd(_state[5], _tau, _state[4]);
 
             // Update cart and pole velocities at next timestep based on current cart and pole accelerations.
-            _state[1] += xa * _tau;
-            _state[3] += thetaa1 * _tau;
-            _state[5] += thetaa2 * _tau;
+            _state[1] = MathF.FusedMultiplyAdd(xa, _tau, _state[1]);
+            _state[3] = MathF.FusedMultiplyAdd(thetaa1, _tau, _state[3]);
+            _state[5] = MathF.FusedMultiplyAdd(thetaa2, _tau, _state[5]);
         }
 
         #endregion

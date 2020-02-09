@@ -1,4 +1,6 @@
-﻿namespace CartPolePhysics
+﻿using System;
+
+namespace CartPolePhysics
 {
     internal static class ArrayMaths
     {
@@ -19,7 +21,7 @@
             // Vectorizing this may not be worth it as there are only 4 values, hence only a single vector op will be executed at most,
             // and if Vector<double>.Count is greater than four then we have to pad our arrays with zeros to match the wider vectors.
             for(int i=0; i < dest.Length; i++) {
-                dest[i] = add[i] + (a[i] * scalar);
+                dest[i] = Math.FusedMultiplyAdd(a[i], scalar, add[i]);
             }
         }
 
@@ -40,7 +42,7 @@
             // Vectorizing this may not be worth it as there are only 4 values, hence only a single vector op will be executed at most,
             // and if Vector<double>.Count is greater than four then we have to pad our arrays with zeros to match the wider vectors.
             for(int i=0; i < dest.Length; i++) {
-                dest[i] = add[i] + (a[i] * scalar);
+                dest[i] = MathF.FusedMultiplyAdd(a[i], scalar, add[i]);
             }
         }
     }
