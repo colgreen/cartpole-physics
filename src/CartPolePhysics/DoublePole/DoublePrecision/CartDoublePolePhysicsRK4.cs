@@ -31,7 +31,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         public CartDoublePolePhysicsRK4() 
             : base()
         {
-            _tau_half = _tau / 2f;
+            _tau_half = _tau / 2.0;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         public CartDoublePolePhysicsRK4(double tau) 
             : base(tau)
         {
-            _tau_half = _tau / 2f;
+            _tau_half = _tau / 2.0;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         public CartDoublePolePhysicsRK4(double[] state) 
             : base(state)
         {
-            _tau_half = _tau / 2f;
+            _tau_half = _tau / 2.0;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         public CartDoublePolePhysicsRK4(double tau, double[] state) 
             : base(tau, state)
         {
-            _tau_half = _tau / 2f;
+            _tau_half = _tau / 2.0;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
             CartDoublePoleEquations equations) 
             : base(tau, state, equations)
         {
-            _tau_half = _tau / 2f;
+            _tau_half = _tau / 2.0;
         }
 
         #endregion

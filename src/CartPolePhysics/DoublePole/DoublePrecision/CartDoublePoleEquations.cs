@@ -15,24 +15,24 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         /// caused by gravity (i.e. approximately 9.8 m/s^2 for gravity on Earth). The direction of gravitational acceleration
         /// is taken into account in the formulation of the equations, therefore the sign of g is positive.
         /// </summary>
-        readonly double g = 9.8f;
+        readonly double g = 9.8;
         /// <summary>
         /// Mass of pole 1 (in kilograms).
         /// </summary>
-        readonly double m = 0.1f;
+        readonly double m = 0.1;
         /// <summary>
         /// Mass of pole 2 (in kilograms).
         /// </summary>
-        readonly double m2 = 0.01f;
+        readonly double m2 = 0.01;
         /// <summary>
         /// Mass of the cart (in kilograms).
         /// </summary>
-        readonly double m_c = 1f;
+        readonly double m_c = 1.0;
         /// <summary>
         /// Length of pole 1 (in metres). This is the full length of the pole, and not the half length as used widely 
         /// elsewhere in the literature.
         /// </summary>
-        readonly double l = 1f;
+        readonly double l = 1.0;
         /// <summary>
         /// Half length of pole 1.
         /// </summary>
@@ -41,7 +41,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         /// Length of pole 2 (in metres). This is the full length of the pole, and not the half length as used widely 
         /// elsewhere in the literature.
         /// </summary>
-        readonly double l2 = 0.1f;
+        readonly double l2 = 0.1;
         /// <summary>
         /// Half length of pole 2.
         /// </summary>
@@ -49,11 +49,11 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         /// <summary>
         /// Coefficient of friction between the pole and the cart, i.e. friction at the pole's pivot joint.
         /// </summary>
-        readonly double mu_p = 0.001f;
+        readonly double mu_p = 0.001;
         /// <summary>
         /// Coefficient of friction between the cart and the track.
         /// </summary>
-        readonly double mu_c = 0.1f;
+        readonly double mu_c = 0.1;
         /// <summary>
         /// Combined mass of the cart and the two poles.
         /// </summary>
@@ -69,8 +69,8 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
         public CartDoublePoleEquations()   
         {
             M = m + m2 + m_c;
-            l_hat = l / 2f;
-            l2_hat = l2 / 2f;
+            l_hat = l / 2.0;
+            l2_hat = l2 / 2.0;
         }
 
         /// <summary>
@@ -147,15 +147,15 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
 
             // Calc cart horizontal acceleration.
             xa = (g * ((m*sin_theta*cos_theta) + (m2*sin_theta2*cos_theta2))
-                - (7f/3f) * (f +(m*l_hat*thetav_sqr*sin_theta) + (m2*l2_hat*thetav2_sqr*sin_theta2) - mu_c*xv)
+                - (7.0/3.0) * (f +(m*l_hat*thetav_sqr*sin_theta) + (m2*l2_hat*thetav2_sqr*sin_theta2) - mu_c*xv)
                 - (((mu_p*thetav*cos_theta)/l_hat) + ((mu_p*thetav2*cos_theta2)/l2_hat)))
-                / ((m*cos_theta_sqr) + (m2*cos_theta2_sqr) - (7/3)*M);
+                / ((m*cos_theta_sqr) + (m2*cos_theta2_sqr) - (7.0/3.0)*M);
 
             // Calc pole 1 angular acceleration.
-            thetaa1 = (3f/(7f*l_hat)) * (g*sin_theta - xa*cos_theta - ((mu_p * thetav)/(m*l_hat)));
+            thetaa1 = (3.0/(7.0*l_hat)) * (g*sin_theta - xa*cos_theta - ((mu_p * thetav)/(m*l_hat)));
 
             // Calc pole 2 angular acceleration.
-            thetaa2 = (3f/(7f*l2_hat)) * (g*sin_theta2 - xa*cos_theta2 - ((mu_p * thetav2)/(m2*l2_hat)));
+            thetaa2 = (3.0/(7.0*l2_hat)) * (g*sin_theta2 - xa*cos_theta2 - ((mu_p * thetav2)/(m2*l2_hat)));
         }
 
         #endregion

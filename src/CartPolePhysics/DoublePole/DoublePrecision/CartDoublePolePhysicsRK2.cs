@@ -106,7 +106,7 @@ namespace CartPolePhysics.DoublePole.DoublePrecision
             // Project _state to its new state, using the mean gradients given by (k1 + k2) / 2.
             for(int i=0; i < 6; i++) 
             {
-                _state[i] += (_k1[i] + _k2[i]) * _tau * 0.5f;
+                _state[i] += (_k1[i] + _k2[i]) * _tau * 0.5;
             }
         }
 
