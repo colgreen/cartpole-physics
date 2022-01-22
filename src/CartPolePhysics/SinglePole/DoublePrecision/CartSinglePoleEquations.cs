@@ -96,7 +96,7 @@ namespace CartPolePhysics.SinglePole.DoublePrecision
         /// <param name="xa">Returns the cart's horizontal acceleration.</param>
         /// <param name="thetaa">Returns the pole's angular acceleration.</param>
         public void CalcAccelerations(
-            double[] state,
+            Span<double> state,
             double f,
             out double xa,
             out double thetaa)

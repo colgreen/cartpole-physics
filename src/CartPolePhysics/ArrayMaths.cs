@@ -12,9 +12,9 @@ namespace CartPolePhysics
         /// <param name="a">An array to multiple by a scalar.</param>
         /// <param name="scalar">A scalar to multiply array a by.</param>
         public static void MultiplyAdd(
-            double[] dest,
-            double[] add,
-            double[] a,
+            Span<double> dest,
+            Span<double> add,
+            Span<double> a,
             double scalar)
         {
             // ENHANCEMENT: Consider vectorizing.
@@ -33,9 +33,9 @@ namespace CartPolePhysics
         /// <param name="a">An array to multiple by a scalar.</param>
         /// <param name="scalar">A scalar to multiply array a by.</param>
         public static void MultiplyAdd(
-            float[] dest,
-            float[] add,
-            float[] a,
+            Span<float> dest,
+            Span<float> add,
+            Span<float> a,
             float scalar)
         {
             // ENHANCEMENT: Consider vectorizing.
