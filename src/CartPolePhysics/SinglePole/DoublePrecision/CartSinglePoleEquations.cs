@@ -11,7 +11,7 @@ namespace CartPolePhysics.SinglePole.DoublePrecision
         #region Instance Fields
 
         /// <summary>
-        /// Gravitational acceleration (in m/s^2). Here g is taken to be the directionless magnitude of the acceleration
+        /// Gravitational acceleration (in m/s^2). Here g is taken to be the direction-less magnitude of the acceleration
         /// caused by gravity (i.e. approximately 9.8 m/s^2 for gravity on Earth). The direction of gravitational acceleration
         /// is taken into account in the formulation of the equations, therefore the sign of g is positive.
         /// </summary>
