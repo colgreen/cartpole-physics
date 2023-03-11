@@ -39,10 +39,10 @@ namespace CartPoleWinForms
                 theta1_series,
                 theta2_series);
 
-            PointPairList x_ppl = new PointPairList(t_series, x_series);
-            PointPairList xv_ppl = new PointPairList(t_series, xv_series);
-            PointPairList theta1_ppl = new PointPairList(t_series, theta1_series);
-            PointPairList theta2_ppl = new PointPairList(t_series, theta2_series);
+            PointPairList x_ppl = new(t_series, x_series);
+            PointPairList xv_ppl = new(t_series, xv_series);
+            PointPairList theta1_ppl = new(t_series, theta1_series);
+            PointPairList theta2_ppl = new(t_series, theta2_series);
 
             GraphPane pane = zed.GraphPane;
             pane.AddCurve("theta1", theta1_ppl, Color.Black, SymbolType.None);

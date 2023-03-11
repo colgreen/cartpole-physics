@@ -44,15 +44,14 @@ namespace CartPoleConsole
             double[] t_series,
             double[] theta_series)
         {
-            using(FileStream fs = File.Create(filename))
-            using(var sw = new StreamWriter(fs))
-            {
-                sw.WriteLine("time,theta");
+            using FileStream fs = File.Create(filename);
+            using var sw = new StreamWriter(fs);
 
-                for(int i=0; i < t_series.Length; i++)
-                {
-                    sw.WriteLine($"{t_series[i]:N3},{theta_series[i]}");
-                }
+            sw.WriteLine("time,theta");
+
+            for(int i=0; i < t_series.Length; i++)
+            {
+                sw.WriteLine($"{t_series[i]:N3},{theta_series[i]}");
             }
         }
 
@@ -78,15 +77,14 @@ namespace CartPoleConsole
             float[] t_series,
             float[] theta_series)
         {
-            using(FileStream fs = File.Create(filename))
-            using(var sw = new StreamWriter(fs))
-            {
-                sw.WriteLine("time,theta");
+            using FileStream fs = File.Create(filename);
+            using var sw = new StreamWriter(fs);
 
-                for(int i = 0; i < t_series.Length; i++)
-                {
-                    sw.WriteLine($"{t_series[i]:N3},{theta_series[i]}");
-                }
+            sw.WriteLine("time,theta");
+
+            for(int i = 0; i < t_series.Length; i++)
+            {
+                sw.WriteLine($"{t_series[i]:N3},{theta_series[i]}");
             }
         }
 
@@ -115,15 +113,14 @@ namespace CartPoleConsole
             double[] theta1_series,
             double[] theta2_series)
         {
-            using(FileStream fs = File.Create(filename))
-            using(var sw = new StreamWriter(fs))
-            {
-                sw.WriteLine("time,x,theta1,theta2");
+            using FileStream fs = File.Create(filename);
+            using var sw = new StreamWriter(fs);
 
-                for(int i=0; i < t_series.Length; i++)
-                {
-                    sw.WriteLine($"{t_series[i]:N3},{x_series[i]},{theta1_series[i]},{theta2_series[i]}");
-                }
+            sw.WriteLine("time,x,theta1,theta2");
+
+            for(int i = 0; i < t_series.Length; i++)
+            {
+                sw.WriteLine($"{t_series[i]:N3},{x_series[i]},{theta1_series[i]},{theta2_series[i]}");
             }
         }
 
