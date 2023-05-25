@@ -4,10 +4,7 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
 {
     internal class CartSinglePoleSimulator
     {
-        #region Instance Fields
-
         readonly float _tau;
-        readonly float _durationSecs;
         readonly int _timesteps;
         readonly CartSinglePolePhysics _cartPolePhysics;
         readonly float[] _t_series;
@@ -15,17 +12,12 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
         readonly float[] _xv_series;
         readonly float[] _theta_series;
 
-        #endregion
-
-        #region Constructor
-
         public CartSinglePoleSimulator(
           
             float durationSecs,
             CartSinglePolePhysics cartPolePhysics)
         {
             _tau = cartPolePhysics.Tau;
-            _durationSecs = durationSecs;
             _timesteps = (int)(durationSecs / _tau);
             _cartPolePhysics = cartPolePhysics;
 
@@ -34,10 +26,6 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
             _xv_series = new float[_timesteps];
             _theta_series = new float[_timesteps];
         }
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         /// The clock time at each timestep (number of seconds from simulation start).
@@ -53,10 +41,6 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
         /// Pole angle (radians) at each timestep.
         /// </summary>
         public float[] ThetaSeries => _theta_series;
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Run the simulation.
@@ -78,7 +62,5 @@ namespace CartPoleConsole.SinglePole.SinglePrecision
                 _cartPolePhysics.Update(0f);
             }
         }
-
-        #endregion
     }
 }
