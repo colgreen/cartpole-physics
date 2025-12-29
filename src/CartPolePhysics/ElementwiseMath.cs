@@ -2,7 +2,7 @@
 
 namespace CartPolePhysics;
 
-internal static class ArrayMaths
+internal static class ElementwiseMath
 {
     /// <summary>
     /// Computes dest[i] = FMA(a[i], scalar, addend[i]) for all i.
