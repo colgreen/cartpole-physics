@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ZedGraph" Version="5.1.7" />
+    <PackageReference Include="ZedGraph" Version="5.2.1" />
   </ItemGroup>
 
   <ItemGroup>
