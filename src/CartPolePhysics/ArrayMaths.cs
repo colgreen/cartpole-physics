@@ -5,44 +5,44 @@ namespace CartPolePhysics;
 internal static class ArrayMaths
 {
     /// <summary>
-    /// Fused multiply-add.
+    /// Computes dest[i] = FMA(a[i], scalar, addend[i]) for all i.
     /// </summary>
-    /// <param name="dest">Destination array. The results are stored in this array.</param>
-    /// <param name="add">The elements in this array are pointwise added to the destination array.</param>
-    /// <param name="a">An array to multiple by a scalar.</param>
-    /// <param name="scalar">A scalar to multiply array a by.</param>
+    /// <param name="dest">Destination span where results are stored.</param>
+    /// <param name="addend">Values added pointwise to the product.</param>
+    /// <param name="a">Values multiplied by <paramref name="scalar"/>.</param>
+    /// <param name="scalar">Scalar multiplier.</param>
+    /// <exception cref="ArgumentException">Thrown if spans have different lengths.</exception>
     public static void MultiplyAdd(
         Span<double> dest,
-        Span<double> add,
-        Span<double> a,
+        ReadOnlySpan<double> addend,
+        ReadOnlySpan<double> a,
         double scalar)
     {
-        // ENHANCEMENT: Consider vectorizing.
-        // Vectorizing this may not be worth it as there are only 4 values, hence only a single vector op will be executed at most,
-        // and if Vector<double>.Count is greater than four then we have to pad our arrays with zeros to match the wider vectors.
-        for(int i=0; i < dest.Length; i++) {
-            dest[i] = Math.FusedMultiplyAdd(a[i], scalar, add[i]);
-        }
+        if(dest.Length != addend.Length || dest.Length != a.Length)
+            throw new ArgumentException("dest, addend, and a must have the same length.");
+
+        for(int i = 0; i < dest.Length; i++)
+            dest[i] = Math.FusedMultiplyAdd(a[i], scalar, addend[i]);
     }
 
     /// <summary>
-    /// Fused multiply-add.
+    /// Computes dest[i] = FMA(a[i], scalar, addend[i]) for all i.
     /// </summary>
-    /// <param name="dest">Destination array. The results are stored in this array.</param>
-    /// <param name="add">The elements in this array are pointwise added to the destination array.</param>
-    /// <param name="a">An array to multiple by a scalar.</param>
-    /// <param name="scalar">A scalar to multiply array a by.</param>
+    /// <param name="dest">Destination span where results are stored.</param>
+    /// <param name="addend">Values added pointwise to the product.</param>
+    /// <param name="a">Values multiplied by <paramref name="scalar"/>.</param>
+    /// <param name="scalar">Scalar multiplier.</param>
+    /// <exception cref="ArgumentException">Thrown if spans have different lengths.</exception>
     public static void MultiplyAdd(
         Span<float> dest,
-        Span<float> add,
-        Span<float> a,
+        ReadOnlySpan<float> addend,
+        ReadOnlySpan<float> a,
         float scalar)
     {
-        // ENHANCEMENT: Consider vectorizing.
-        // Vectorizing this may not be worth it as there are only 4 values, hence only a single vector op will be executed at most,
-        // and if Vector<double>.Count is greater than four then we have to pad our arrays with zeros to match the wider vectors.
-        for(int i=0; i < dest.Length; i++) {
-            dest[i] = MathF.FusedMultiplyAdd(a[i], scalar, add[i]);
-        }
+        if(dest.Length != addend.Length || dest.Length != a.Length)
+            throw new ArgumentException("dest, addend, and a must have the same length.");
+
+        for(int i = 0; i < dest.Length; i++)
+            dest[i] = MathF.FusedMultiplyAdd(a[i], scalar, addend[i]);
     }
 }
